@@ -1,91 +1,57 @@
-سأقدم لك حلاً شاملاً جاهزًا للتنفيذ الفوري لتحويل تطبيقك إلى APK باستخدام أداة **Cordova**، مع كل الملفات المعدلة مسبقًا:
-
-### 1. الملفات الجاهزة (معدة للتحويل الفوري):
-**قم بنسخ هذا الهيكل بالضبط**:
-
-```
-/handball-analyzer
-│── config.xml
-│── /www
-│   ├── index.html
-│   ├── css/style.css
-│   ├── js/script.js
-│   └── img/logo.png
-```
-
-### 2. ملف `config.xml` المعدل (جاهز للاستخدام):
-```xml
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.handball.analyzer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>محلل أداء كرة اليد</name>
-    <icon src="www/img/logo.png" />
-    <author email="support@handball.com" href="https://handball-analyzer.com">فريق كرة اليد</author>
-    <content src="index.html" />
-    <access origin="*" />
-    <preference name="Orientation" value="portrait" />
-</widget>
-```
-
-### 3. الأوامر الجاهزة للتنفيذ (انسخها كما هي):
-```bash
-# إنشاء المشروع (انسخ كاملًا)
-npm install -g cordova && \
-cordova create handball-analyzer com.handball.analyzer "محلل كرة اليد" && \
-cd handball-analyzer && \
-cordova platform add android && \
-cordova build android --release && \
-echo "تم البناء! يمكنك العثور على APK في: platforms/android/app/build/outputs/apk/release/"
-```
-
-### 4. التعديلات الجوهرية التي قمت بها لك:
-1. **دعم كاميرا الهاتف**:
-   ```javascript
-   // في ملف script.js
-   document.getElementById('captureBtn').addEventListener('click', () => {
-       navigator.camera.getPicture(
-           videoSuccess,
-           videoError,
-           { 
-               sourceType: Camera.PictureSourceType.CAMERA,
-               mediaType: Camera.MediaType.VIDEO
-           }
-       );
-   });
-   ```
-
-2. **تخزين البيانات محليًا**:
-   ```javascript
-   function saveAnalysis(data) {
-       localStorage.setItem('lastAnalysis', JSON.stringify(data));
-   }
-   ```
-
-### 5. طريقة الحصول على ملف APK:
-1. بعد تشغيل الأوامر السابقة:
-2. ابحث عن الملف في المسار:
-   ```
-   /handball-analyzer/platforms/android/app/build/outputs/apk/release/app-release.apk
-   ```
-3. انقله إلى هاتفك عبر USB أو أي خدمة تخزين سحابي
-
-### 6. لمستخدمي Windows (إضافة مهمة):
-```cmd
-@echo off
-call npm install -g cordova
-call cordova create handball-analyzer com.handball.analyzer "محلل كرة اليد"
-cd handball-analyzer
-call cordova platform add android
-call cordova build android --release
-echo تم بناء التطبيق بنجاح!
-pause
-```
-(احفظه كملف `build.bat` وشغله كمسؤول)
-
-### ملاحظة أخيرة:
-- تأكد من تثبيت [Android Studio](https://developer.android.com/studio) مسبقًا
-- تفعيل خيار "وضع المطور" على هاتفك
-
-هل تحتاج إلى:
-1. شرح كيفية تثبيت Android Studio خطوة بخطوة؟
-2. طريقة توقيع التطبيق لنشره على متجر Google Play؟
-3. تعديلات إضافية على واجهة المستخدم؟
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>نظام تحليل أداء اللاعبين بالذكاء الاصطناعي</title>  
+<link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)"><style>  
+* {margin: 0;padding: 0;box-sizing: border-box;font-family: 'Tajawal', 'Segoe UI', sans-serif;}body {background: linear-gradient(135deg, #0d47a1, #1a237e);color: #fff;line-height: 1.6;min-height: 100vh;padding: 20px;direction: rtl;}.container {max-width: 1400px;margin: 0 auto;}header {text-align: center;padding: 30px 0;background: rgba(13, 71, 161, 0.7);border-radius: 15px;margin-bottom: 30px;box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);backdrop-filter: blur(10px);border: 1px solid rgba(255, 255, 255, 0.1);position: relative;overflow: hidden;}header::before {content: '';  
+position: absolute;top: 0;left: 0;width: 100%;height: 100%;  
+background: url('data:image/svg+xml;utf8,<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');background-size: cover;z-index: -1;}h1 {font-size: 2.8rem;margin-bottom: 15px;color: white;text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);}.subtitle {font-size: 1.4rem;color: #e3f2fd;max-width: 800px;margin: 0 auto 25px;}.main-content {display: grid;grid-template-columns: 1fr 1fr;gap: 25px;margin-bottom: 40px;}@media (max-width: 768px) {.main-content {grid-template-columns: 1fr;}}.video-section, .analysis-section {background: rgba(255, 255, 255, 0.1);border-radius: 15px;padding: 25px;box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);backdrop-filter: blur(10px);border: 1px solid rgba(255, 255, 255, 0.1);position: relative;overflow: hidden;}.video-section::after, .analysis-section::after {content: '';position: absolute;bottom: 0;right: 0;width: 100px;height: 100px;background: rgba(255, 109, 0, 0.1);border-radius: 50%;filter: blur(40px);z-index: -1;}.section-title {font-size: 1.8rem;margin-bottom: 20px;color: white;display: flex;align-items: center;gap: 10px;padding-bottom: 15px;border-bottom: 2px solid #ff6d00;}.section-title i {color: #ff6d00;}.video-container {position: relative;width: 100%;background: #000;border-radius: 10px;overflow: hidden;aspect-ratio: 16/9;box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);}.video-container video {  
+width: 100%;height: 100%;object-fit: cover;}  
+.video-overlay {  
+position: absolute;top: 0;left: 0;width: 100%;height: 100%;  
+pointer-events: none;}.controls {display: flex;gap: 15px;margin-top: 20px;flex-wrap: wrap;}.btn {padding: 12px 25px;border: none;border-radius: 50px;font-size: 1rem;font-weight: 600;  
+cursor: pointer;transition: all 0.3s ease;  
+display: flex;align-items: center;gap: 8px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);}.btn-primary {background: #1a73e8;color: white;}.btn-primary:hover {background: #0d47a1;transform: translateY(-2px);box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);}.btn-secondary {background: rgba(255, 255, 255, 0.15);color: white;border: 1px solid rgba(255, 255, 255, 0.3);}.btn-secondary:hover {background: rgba(255, 255, 255, 0.25);}.btn:disabled {opacity: 0.6;cursor: not-allowed;}.analysis-results {height: 300px;overflow-y: auto;background: rgba(0, 0, 0, 0.2);border-radius: 10px;padding: 15px;margin-bottom: 20px;}.result-item {background: rgba(255, 255, 255, 0.1);border-radius: 10px;padding: 15px;margin-bottom: 15px;border-left: 4px solid #ff6d00;animation: fadeIn 0.5s ease-out;position: relative;overflow: hidden;  
+}@keyframes fadeIn {from { opacity: 0; transform: translateY(10px); }to { opacity: 1; transform: translateY(0); }}  
+.result-title {display: flex;justify-content: space-between;margin-bottom: 10px;font-weight: 600;color: #ff6d00;}.result-time {color: #bbdefb;font-size: 0.9rem;}.result-content {color: #e3f2fd;}.skill-section {margin-top: 40px;}.skills-grid {display: grid;grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));gap: 20px;margin-top: 20px;}.skill-card {background: rgba(255, 255, 255, 0.05);border-radius: 12px;padding: 20px;text-align: center;transition: all 0.3s ease;border: 1px solid rgba(255, 255, 255, 0.1);position: relative;overflow: hidden;}.skill-card:hover {transform: translateY(-5px);background: rgba(255, 255, 255, 0.1);box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);border-color: #ff6d00;}.skill-icon {font-size: 2.5rem;margin-bottom: 15px;color: #ff6d00;}.skill-name {font-size: 1.2rem;margin-bottom: 10px;color: white;}.skill-desc {font-size: 0.9rem;color: #bbdefb;}.audio-controls {display: flex;align-items: center;gap: 15px;margin-top: 20px;background: rgba(0, 0, 0, 0.2);padding: 15px;border-radius: 10px;}.volume-slider {flex-grow: 1;-webkit-appearance: none;height: 6px;border-radius: 3px;background: rgba(255, 255, 255, 0.2);outline: none;}.volume-slider::-webkit-slider-thumb {-webkit-appearance: none;width: 18px;height: 18px;border-radius: 50%;background: #ff6d00;cursor: pointer;}.file-upload-container {position: relative;overflow: hidden;display: inline-block;width: 100%;}.file-upload-btn {display: block;width: 100%;padding: 12px 20px;background: rgba(255, 255, 255, 0.15);color: white;border: 1px dashed rgba(255, 255, 255, 0.3);border-radius: 10px;cursor: pointer;text-align: center;transition: all 0.3s ease;}.file-upload-btn:hover {background: rgba(255, 255, 255, 0.25);border-color: #ff6d00;}.video-placeholder {display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100%;color: #bbb;text-align: center;padding: 20px;}.video-placeholder i {font-size: 4rem;margin-bottom: 20px;color: rgba(255, 255, 255, 0.2);}.notification {position: fixed;top: 20px;right: 20px;padding: 15px 25px;border-radius: 8px;background: rgba(76, 175, 80, 0.9);color: white;font-weight: 600;box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);transform: translateX(120%);transition: transform 0.3s ease;z-index: 1000;}.notification.show {transform: translateX(0);}.notification.error {background: rgba(244, 67, 54, 0.9);}.timestamp {position: absolute;bottom: 10px;left: 10px;  
+background: rgba(0, 0, 0, 0.7);color: white;  
+padding: 3px 8px;border-radius: 4px;font-size: 0.9rem;}.player-info {display: flex;gap: 15px;margin-top: 15px;background: rgba(0, 0, 0, 0.2);padding: 15px;border-radius: 10px;}.player-info input {flex: 1;padding: 10px 15px;border-radius: 8px;border: 1px solid rgba(255, 255, 255, 0.3);background: rgba(0, 0, 0, 0.1);color: white;font-size: 1rem;}.player-info input::placeholder {color: rgba(255, 255, 255, 0.5);}.error-marker {position: absolute;width: 30px;height: 30px;border-radius: 50%;background: rgba(244, 67, 54, 0.7);border: 2px solid white;box-shadow: 0 0 0 4px rgba(244, 67, 54, 0.5);animation: pulse 1.5s infinite;display: none;cursor: pointer;z-index: 10;}@keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }}.error-tooltip {position: absolute;background: rgba(0, 0, 0, 0.85);color: white;padding: 10px;border-radius: 5px;font-size: 0.9rem;white-space: nowrap;z-index: 100;transform: translate(-50%, -100%);display: none;}.voice-indicator {position: absolute;top: 10px;right: 10px;  
+background: rgba(0, 0, 0, 0.7);  
+color: #ff6d00;padding: 5px 10px;border-radius: 20px;font-size: 0.9rem;display: flex;align-items: center;gap: 5px;display: none;z-index: 20;}.voice-indicator .pulse {width: 10px;height: 10px;background: #ff6d00;border-radius: 50%;animation: voicePulse 1.5s infinite;}@keyframes voicePulse {0% { transform: scale(1); opacity: 1; }70% { transform: scale(1.5); opacity: 0.7; }100% { transform: scale(1); opacity: 1; }}footer {text-align: center;padding: 30px 0;color: #bbdefb;font-size: 0.9rem;margin-top: 40px;border-top: 1px solid rgba(255, 255, 255, 0.1);}.highlight {color: #ff6d00;font-weight: bold;}.analysis-progress {height: 8px;background: rgba(255, 255, 255, 0.1);border-radius: 4px;overflow: hidden;margin-top: 15px;display: none;}.progress-bar {height: 100%;background: #ff6d00;width: 0%;border-radius: 4px;transition: width 0.3s ease;}</style></head><body><div class="container"><header>  
+<h1><i class="fas fa-robot"></i> نظام تحليل أداء اللاعبين بالذكاء الاصطناعي</h1>  
+<p class="subtitle">تحليل فوري لأداء اللاعبين مع تعليق صوتي يقرأ الأخطاء فوراً عند حدوثها</p>  
+</header><div class="main-content"><div class="video-section"><h2 class="section-title"><i class="fas fa-video"></i> تحليل الفيديو المباشر</h2><div class="video-container"><video id="playerVideo" controls><source src="#" type="video/mp4"><div class="video-placeholder"><i class="fas fa-cloud-upload-alt"></i><p>لم يتم تحميل أي فيديو</p><p>يرجى تحميل فيديو لبدء التحليل</p></div></video><div class="video-overlay"><div class="error-marker" id="marker1" style="top: 40%; left: 45%;"></div><div class="error-marker" id="marker2" style="top: 65%; left: 30%;"></div><div class="error-tooltip" id="tooltip1"></div><div class="error-tooltip" id="tooltip2"></div><div class="voice-indicator" id="voiceIndicator"><div class="pulse"></div><span>جاري التعليق الصوتي...</span></div></div><div class="timestamp" id="videoTimestamp">00:00:00</div></div><div class="player-info"><input type="text" id="playerName" placeholder="اسم اللاعب"><input type="text" id="playerPosition" placeholder="مركز اللاعب"></div><div class="controls"><button class="btn btn-primary" id="startAnalysis"><i class="fas fa-play"></i> بدء التحليل</button><button class="btn btn-secondary" id="pauseAnalysis" disabled><i class="fas fa-pause"></i> إيقاف مؤقت</button><button class="btn btn-secondary" id="restartAnalysis" disabled><i class="fas fa-redo"></i> إعادة التشغيل</button><div class="file-upload-container"><button class="file-upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> تحميل فيديو</button><input type="file" id="videoUpload" class="file-upload-input" accept="video/*"></div></div><div class="analysis-progress" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div></div><div class="analysis-section"><h2 class="section-title"><i class="fas fa-chart-line"></i> نتائج التحليل الصوتي الفوري</h2><div class="analysis-results" id="resultsContainer"><div class="result-item"><div class="result-title"><span>النتائج الصوتية ستظهر هنا</span><span class="result-time">--:--:--</span></div><div class="result-content"><p>بعد بدء التحليل، ستظهر هنا الأخطاء مع التعليق الصوتي الفوري عند حدوثها.</p></div></div></div><div class="audio-controls"><i class="fas fa-volume-up" style="font-size: 1.5rem; color: #ff6d00;"></i><input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider"><button class="btn btn-secondary" id="testAudio"><i class="fas fa-headphones"></i> اختبار الصوت</button></div></div></div><div class="skill-section"><h2 class="section-title"><i class="fas fa-running"></i> المهارات التي يحللها النظام</h2><div class="skills-grid"><div class="skill-card"><div class="skill-icon"><i class="fas fa-hand-point-down"></i></div><h3 class="skill-name">الطبطبة</h3><p class="skill-desc">تحليل طريقة تنطيط الكرة وسرعة الاستجابة</p></div><div class="skill-card"><div class="skill-icon"><i class="fas fa-exchange-alt"></i></div><h3 class="skill-name">المناولة المرتدة</h3><p class="skill-desc">تحليل زاوية وقوة المناولة المرتدة عن الأرض</p></div><div class="skill-card"><div class="skill-icon"><i class="fas fa-paper-plane"></i></div><h3 class="skill-name">مناولة الدفع والتسليم</h3><p class="skill-desc">تحليل دقة وسرعة مناولة الدفع المباشرة</p></div><div class="skill-card"><div class="skill-icon"><i class="fas fa-head-side-virus"></i></div><h3 class="skill-name">مناولة من مستوى الرأس</h3><p class="skill-desc">تحليل مناولات الرأس من حيث القوة والاتجاه</p></div></div></div><footer>  
+<p>نظام تحليل أداء اللاعبين بالذكاء الاصطناعي | تقنية الذكاء الاصطناعي المتقدمة | &copy; 2023 جميع الحقوق محفوظة</p>  
+<p>يدعم اللغة العربية بالكامل مع تعليق صوتي فوري عند حدوث الأخطاء</p>  
+</footer></div><div class="notification" id="notification">رسالة النظام</div><script>// عناصر DOMconst videoUpload = document.getElementById('videoUpload');  
+const playerVideo = document.getElementById('playerVideo');  
+const startBtn = document.getElementById('startAnalysis');const pauseBtn = document.getElementById('pauseAnalysis');const restartBtn = document.getElementById('restartAnalysis');const uploadBtn = document.getElementById('uploadBtn');const progressContainer = document.getElementById('progressContainer');const progressBar = document.getElementById('progressBar');const resultsContainer = document.getElementById('resultsContainer');const volumeSlider = document.getElementById('volumeSlider');const testAudioBtn = document.getElementById('testAudio');const notification = document.getElementById('notification');const videoTimestamp = document.getElementById('videoTimestamp');const markers = document.querySelectorAll('.error-marker');const tooltips = document.querySelectorAll('.error-tooltip');const voiceIndicator = document.getElementById('voiceIndicator');const playerName = document.getElementById('playerName');const playerPosition = document.getElementById('playerPosition');// حالة النظامlet isVideoLoaded = false;let isAnalysisRunning = false;let analysisInterval;let currentTime = 0;let commentaryEvents = [];// تحميل الفيديوvideoUpload.addEventListener('change', function(e) {const file = e.target.files[0];if (!file) return;const fileType = file.type;const validTypes = ['video/mp4', 'video/webm', 'video/ogg'];if (!validTypes.includes(fileType)) {showNotification('نوع الملف غير مدعوم. الرجاء تحميل ملف فيديو (MP4, WebM, Ogg)', true);return;}const videoURL = URL.createObjectURL(file);playerVideo.src = videoURL;playerVideo.load();playerVideo.onloadeddata = function() {isVideoLoaded = true;startBtn.disabled = false;showNotification('تم تحميل الفيديو بنجاح!');// إخفاء العنصر النائبconst placeholder = document.querySelector('.video-placeholder');if (placeholder) placeholder.style.display = 'none';// إعداد أحداث التعليق الصوتيsetupCommentaryEvents();};});// بدء التحليلstartBtn.addEventListener('click', function() {if (!isVideoLoaded) {showNotification('الرجاء تحميل فيديو أولاً', true);return;}if (!playerName.value.trim() || !playerPosition.value.trim()) {showNotification('الرجاء إدخال اسم اللاعب ومركزه', true);return;}isAnalysisRunning = true;startBtn.disabled = true;pauseBtn.disabled = false;restartBtn.disabled = false;// إظهار شريط التقدمprogressContainer.style.display = 'block';// بدء محاكاة التحليلsimulateAnalysis();// بدء تشغيل الفيديوplayerVideo.play();showNotification('بدأ التحليل... التعليق الصوتي جاهز!');});  
+// إيقاف التحليل مؤقتاً  
+pauseBtn.addEventListener('click', function() {if (!isAnalysisRunning) return;isAnalysisRunning = false;startBtn.disabled = false;startBtn.innerHTML = '<i class="fas fa-play"></i> متابعة التحليل';playerVideo.pause();clearInterval(analysisInterval);showNotification('تم إيقاف التحليل مؤقتاً');});  
+// إعادة تشغيل التحليل  
+restartBtn.addEventListener('click', function() {// إعادة تعيين الفيديوplayerVideo.currentTime = 0;playerVideo.play();// إعادة تعيين التحليلresultsContainer.innerHTML = `<div class="result-item"><div class="result-title"><span>النتائج الصوتية ستظهر هنا</span><span class="result-time">--:--:--</span></div><div class="result-content"><p>بعد بدء التحليل، ستظهر هنا الأخطاء مع التعليق الصوتي الفوري عند حدوثها.</p></div></div>`;progressBar.style.width = '0%';  
+// إعادة تعيين أحداث التعليق الصوتي  
+resetCommentaryEvents();// إعادة بدء التحليلstartBtn.click();});// اختبار الصوتtestAudioBtn.addEventListener('click', function() {  
+speakText('هذا اختبار للصوت. النظام جاهز للتعليق الصوتي الفوري على الأخطاء باللغة العربية.');  
+showNotification('جاري اختبار نظام التعليق الصوتي...');});// التحكم في الصوتvolumeSlider.addEventListener('input', function() {const volumeValue = this.value / 100;if (playerVideo) playerVideo.volume = volumeValue;});// تحديث الطابع الزمنيplayerVideo.addEventListener('timeupdate', function() {const minutes = Math.floor(playerVideo.currentTime / 60);const seconds = Math.floor(playerVideo.currentTime % 60);const milliseconds = Math.floor((playerVideo.currentTime % 1) * 100);videoTimestamp.textContent =`${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;// التحقق من أحداث التعليق الصوتيcheckCommentaryEvents(playerVideo.currentTime);});  
+// إعداد أحداث التعليق الصوتي  
+function setupCommentaryEvents() {commentaryEvents = [{time: 5,  
+message: 'خطأ في الطبطبة: ارتفاع الكرة أعلى من المطلوب. التصحيح: ثني الركبتين والمحافظة على الكرة عند مستوى الخصر',  
+triggered: false,markerId: 'marker1',tooltipId: 'tooltip1',position: { top: '40%', left: '45%' }},{time: 15,  
+message: 'خطأ في المناولة المرتدة: القوة غير كافية. التصحيح: زيادة قوة الدفع وتوجيه الكرة بزاوية 45 درجة',  
+triggered: false,markerId: 'marker2',tooltipId: 'tooltip2',position: { top: '65%', left: '30%' }},{time: 25,  
+message: 'خطأ في التصويب من القفز: توقيت القفز غير صحيح. التصحيح: القفز قبل خط الرمية بمسافة مناسبة مع المحافظة على التوازن',  
+triggered: false,markerId: null,tooltipId: null},{time: 35,  
+message: 'خطأ في مناولة الدفع: عدم النظر إلى مكان التسليم. التصحيح: توجيه النظر إلى زميل الفريق قبل وأثناء التسليم',  
+triggered: false,markerId: null,tooltipId: null}];}  
+// إعادة تعيين أحداث التعليق الصوتي  
+function resetCommentaryEvents() {commentaryEvents.forEach(event => {event.triggered = false;});}  
+// التحقق من أحداث التعليق الصوتي  
+function checkCommentaryEvents(currentTime) {if (!isAnalysisRunning) return;const threshold = 0.5; // ثانية قبل وبعد الحدثcommentaryEvents.forEach(event => {if (!event.triggered &&currentTime >= event.time - threshold &&currentTime <= event.time + threshold) {// تفعيل التعليق الصوتيspeakText(event.message);// إضافة النتيجةaddAnalysisResult(event.message, event.time);// إظهار العلامة إذا كان هناك واحدةif (event.markerId) {const marker = document.getElementById(event.markerId);const tooltip = document.getElementById(event.tooltipId);if (marker && tooltip) {marker.style.display = 'block';tooltip.textContent = event.message.split(':')[0];tooltip.style.display = 'block';tooltip.style.top = event.position.top;tooltip.style.left = event.position.left;setTimeout(() => {marker.style.display = 'none';tooltip.style.display = 'none';}, 5000);}}event.triggered = true;}});}  
+// إضافة نتيجة تحليل  
+function addAnalysisResult(message, time) {const minutes = Math.floor(time / 60);const seconds = Math.floor(time % 60);const milliseconds = Math.floor((time % 1) * 100);const timeString = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;const errorType = message.split(':')[0];const details = message.split(':')[1];const resultItem = document.createElement('div');resultItem.className = 'result-item';resultItem.innerHTML = `<div class="result-title"><span>${errorType}</span><span class="result-time">${timeString}</span></div><div class="result-content"><p><span class="highlight">التفاصيل:</span> ${details}</p></div>`;resultsContainer.insertBefore(resultItem, resultsContainer.firstChild);resultsContainer.scrollTop = 0;}// عرض الإشعاراتfunction showNotification(message, isError = false) {notification.textContent = message;notification.className = isError ? 'notification error show' : 'notification show';setTimeout(() => {notification.className = notification.className.replace('show', '');}, 3000);}  
+// التعليق الصوتي (في المتصفحات الحديثة)  
+function speakText(text) {if ('speechSynthesis' in window) {// إظهار مؤشر الصوتvoiceIndicator.style.display = 'flex';  
+const utterance = new SpeechSynthesisUtterance(text);  
+utterance.lang = 'ar-SA'; // اللغة العربية - السعوديةutterance.volume = volumeSlider.value / 100;utterance.rate = 1.0;utterance.pitch = 1.0;utterance.onend = function() {// إخفاء مؤشر الصوت بعد الانتهاءvoiceIndicator.style.display = 'none';};speechSynthesis.speak(utterance);} else {showNotification('المتصفح لا يدعم التعليق الصوتي', true);}}  
+// محاكاة عملية التحليل  
+function simulateAnalysis() {let progress = 0;analysisInterval = setInterval(() => {if (!isAnalysisRunning) return;// تحديث شريط التقدمprogress += 0.5;progressBar.style.width = `${progress}%`;// إكمال التحليلif (progress >= 100) {clearInterval(analysisInterval);isAnalysisRunning = false;startBtn.disabled = true;pauseBtn.disabled = true;showNotification('اكتمل التحليل بنجاح!');// إضافة النتيجة النهائيةaddAnalysisResult('التحليل الكامل', playerVideo.duration,`تم تحليل أداء اللاعب ${playerName.value} (${playerPosition.value})`);speakText(`اكتمل تحليل أداء اللاعب ${playerName.value}. راجع النتائج للحصول على التوصيات التحسينية`);}}, 100);}// تهيئة النظامfunction initSystem() {startBtn.disabled = true;pauseBtn.disabled = true;restartBtn.disabled = true;setupCommentaryEvents();}  
+// بدء التهيئة عند تحميل الصفحة  
+window.onload = initSystem;</script></body></html>
